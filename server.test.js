@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../repo/server"); // expects candidate app to be cloned into /repo
+const app = require("../repo/server"); // Assumes app exposes the Express app instance
 
 describe("Health Check", () => {
   test("GET /health → 200 + {status: ok}", async () => {
@@ -8,6 +8,3 @@ describe("Health Check", () => {
     expect(res.body).toHaveProperty("status", "ok");
   });
 });
-EOF \
-&& npx --yes json -I -f package.json -e 'this.scripts={test:"jest --runInBand"}'
-
